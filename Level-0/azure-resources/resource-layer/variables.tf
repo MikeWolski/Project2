@@ -7,7 +7,7 @@ variable "vnet_peering_enable" {
 # Variable Declaration for Vnet Names
 variable "vnet_name" {
   description = "The name of the virtual network where the virtual machines will reside."
-  type = "list"
+  type = list(string)
   default = [""]
 }
 
@@ -27,7 +27,7 @@ variable "region" {
 # Variable Declaration for Vnet Address
 variable "vnet_address" {
   description = "The address of the virtual network where the virtual machines will reside."
-  type = "list"
+  type = list(string)
   default = ["10.30.0.0/16"]
 }
 
@@ -35,7 +35,7 @@ variable "vnet_address" {
 # Variable Declaration for list of subnet names
 variable "subnet_names" {
   description = "The subnet name of the virtual network where the virtual machines will reside."
-  type="list"
+  type=list(string)
   default = ["Subnet_CE_Tier1","Subnet_CE_Tier2","Subnet_CE_Tier3","Subnet_CE_ER" ,"Subnet_CE_Management"]
 }
 
@@ -43,7 +43,7 @@ variable "subnet_names" {
 # Variable Declaration for list of subnet range
 variable "subnet_range" {
   description = "The subnet id of the virtual network where the virtual machines will reside."
-  type="list"
+  type=list(string)
   default = ["10.30.0.0/24","10.30.1.0/24","10.30.2.0/24","10.30.3.0/24","10.30.4.0/24"]
 }
 
@@ -51,7 +51,7 @@ variable "subnet_range" {
 # Variable Declaration for NSG rules for tier1
 variable "nsg_tier1_rules" {
   description = "The nsg rules for tier1."
-  type= "list"
+  type= list(string)
   default = ["Allow_Port80_Inbound","Allow_Port443_Inbound","Deny_Virtualnetwork_Inbound"]
 }
 
@@ -59,7 +59,7 @@ variable "nsg_tier1_rules" {
 # Variable Declaration for NSG rules for tier2
 variable "nsg_tier2_rules" {
   description = "The nsg rules for tier2."
-  type= "list"
+  type= list(string)
   default = ["Deny_Virtualnetwork_Inbound","Allow_Azuremonitor_Outbound","Deny_Internet_Outbound"]
 }
 
@@ -67,7 +67,7 @@ variable "nsg_tier2_rules" {
 # Variable Declaration for NSG rules for tier3
 variable "nsg_tier3_rules" {
   description = "The nsg rules for tier3."
-  type= "list"
+  type= list(string)
   default = ["Deny_Virtualnetwork_Inbound","Allow_Azuremonitor_Outbound","Deny_Internet_Outbound"]
 }
 
@@ -75,7 +75,7 @@ variable "nsg_tier3_rules" {
 # Variable Declaration for list of nsg names
 variable "nsg_name" {
     description = "The list of NSG names."
-    type = "list"
+    type = list(string)
     default = ["NSG_CE_Tier1","NSG_CE_Tier2","NSG_CE_Tier3"]
 }
 
@@ -84,7 +84,7 @@ variable "nsg_name" {
 
 variable "rt_name" {
   description = "The route table name list."
-  type = "list"
+  type = list(string)
   default = ["RT_CE_Tier1", "RT_CE_Tier2","RT_CE_Tier3","RT_CE_ER", "RT_CE_Management"]
 }
 
@@ -92,25 +92,25 @@ variable "rt_name" {
 
 # Variable Declaration for ER Subnet 
 variable "subnet_er" { 
-    type = "list"
+    type = list(string)
 }
 
 
 # Variable Declaration for  Management Subnet
 variable "subnet_management" {
-  type = "list"
+  type = list(string)
 }
 
 
 # Variable Declaration for ER Subnet Range
 variable "subnet_er_range" {
-  type = "list"
+  type = list(string)
 }
 
 
 # Variable Declaration for  Management Subnet Range
 variable "subnet_management_range" {
-  type = "list"
+  type = list(string)
 }
 
 
@@ -159,7 +159,7 @@ variable "er_subnet_enable" {
 # Variable Declaration for  Tag Value
 variable "tagvalue" {
     description = "The value for the tag"
-    type = "map"
+    type = map(string)
 }
 
 
@@ -178,6 +178,6 @@ variable "service_endpoints_enable" {
 
 # Variable Declaration for Service Endpoint
 variable "service_endpoints" {
-  type ="list"
+  type =list(string)
   default = [""]
 }

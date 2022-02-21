@@ -1,10 +1,10 @@
 #Variable Declaration for Route Table ID
 variable "rt_id" {
-  type = "list"
+  type = list(string)
 }
 #Variable Declaration for Subnet ID
 variable "subnet_id" {
-  type = "list"
+  type = list(string)
 }
 #Variable Declaration to enable Route table
 variable "rt_enable" {

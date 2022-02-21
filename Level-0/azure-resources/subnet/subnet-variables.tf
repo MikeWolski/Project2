@@ -12,13 +12,13 @@ variable "vnet_name" {
 
 # Variable declaration for the subnet names
 variable "subnet_names" {
-  type="list"
+  type=list(string)
 }
 
 
 # Variable declaration for the  Subnet's ranges
 variable "subnet_range" {
-  type="list"
+  type=list(string)
 }
 
 
@@ -40,7 +40,7 @@ variable "service_endpoints" {
 
 # Variable declaration for the service
 variable "service" {
-  type = "list"
+  type = list(string)
   default = ["0","0","1"]
 }
 

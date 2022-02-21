@@ -18,7 +18,7 @@ variable "region" {
 
 # Variable declaration for the Tag Value to be defined
 variable "tagvalue" {
-    type = "map"
+    type = map(string)
 }
 
 

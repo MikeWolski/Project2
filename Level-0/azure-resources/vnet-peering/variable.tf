@@ -17,7 +17,7 @@ variable "vnet_peering_enable" {
 
 # Variable Declaration for virtual network name
 variable "vnet_name"  {
-    type        = "list"
+    type        = list(string)
 }
 
 # Variable Declaration for allow_virtual_network_access

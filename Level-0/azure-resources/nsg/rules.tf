@@ -1,6 +1,6 @@
 # The pre-configurable rules for the network security groups
 variable "rules" {
-    type = "map"
+    type = map(list(string))
     default = {
     Allow_Port80_Inbound            = ["100", "Inbound", "Allow", "*", "*", "80", "Allowport80" ,"*" , "*"]
 	Allow_Port3389_Inbound          = ["110", "Inbound", "Allow", "*", "*", "3389", "Allowport3389", "*", "*"]

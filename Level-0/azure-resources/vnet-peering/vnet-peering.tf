@@ -24,7 +24,7 @@ resource "azurerm_virtual_network_peering" "Peer2" {
   allow_forwarded_traffic      = "${var.allow_forwarded_traffic}"
   allow_gateway_transit        = "${var.allow_gateway_transit}"
   use_remote_gateways          = "${var.use_remote_gateways}"
-  depends_on                   = ["azurerm_virtual_network_peering.Peer1"]
+  depends_on                   = [azurerm_virtual_network_peering.Peer1]
  
 
 }

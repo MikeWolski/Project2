@@ -23,7 +23,7 @@ resource "azurerm_network_security_rule" "predefined_rules_web" {
   destination_address_prefix  = "${element(var.rules[var.nsg_tier1_rules[count.index]], 8)}" 
   resource_group_name         = "${var.resource_group_name}"
   network_security_group_name = "${lower("nsg-${var.environment}-${var.nsg_name[0]}")}"
-  depends_on                  = ["azurerm_network_security_group.networksg"]
+  depends_on                  = [azurerm_network_security_group.networksg]
 }
 
 
@@ -42,7 +42,7 @@ resource "azurerm_network_security_rule" "predefined_rules_app" {
   destination_address_prefix  = "${element(var.rules[var.nsg_tier2_rules[count.index]], 8)}" 
   resource_group_name         = "${var.resource_group_name}"
   network_security_group_name = "${lower("nsg-${var.environment}-${var.nsg_name[1]}")}"
-  depends_on                  = ["azurerm_network_security_group.networksg"]
+  depends_on                  = [azurerm_network_security_group.networksg]
 }
 
 
@@ -61,7 +61,7 @@ resource "azurerm_network_security_rule" "predefined_rules_db" {
   destination_address_prefix  = "${element(var.rules[var.nsg_tier3_rules[count.index]], 8)}" 
   resource_group_name         = "${var.resource_group_name}"
   network_security_group_name = "${lower("nsg-${var.environment}-${var.nsg_name[2]}")}"
-  depends_on                  = ["azurerm_network_security_group.networksg"]
+  depends_on                  = [azurerm_network_security_group.networksg]
 }
 
 
@@ -80,7 +80,7 @@ resource "azurerm_network_security_rule" "From_Tier2_To_Tier1_Inbound" {
   destination_address_prefix  = "*" 
   resource_group_name         = "${var.resource_group_name}"
   network_security_group_name = "${lower("nsg-${var.environment}-${var.nsg_name[0]}")}"
-  depends_on = ["azurerm_network_security_group.networksg"]
+  depends_on = [azurerm_network_security_group.networksg]
 }
 
 
@@ -99,7 +99,7 @@ resource "azurerm_network_security_rule" "From_Tier1_To_Tier2_Inbound" {
   destination_address_prefix  = "*" 
   resource_group_name         = "${var.resource_group_name}"
   network_security_group_name = "${lower("nsg-${var.environment}-${var.nsg_name[1]}")}"
-  depends_on                  = ["azurerm_network_security_group.networksg"]
+  depends_on                  = [azurerm_network_security_group.networksg]
 }
 
 
@@ -118,7 +118,7 @@ resource "azurerm_network_security_rule" "From_Tier3_To_Tier2_Inbound" {
   destination_address_prefix  = "*" 
   resource_group_name         = "${var.resource_group_name}"
   network_security_group_name = "${lower("nsg-${var.environment}-${var.nsg_name[1]}")}"
-  depends_on                  = ["azurerm_network_security_group.networksg"]
+  depends_on                  = [azurerm_network_security_group.networksg]
 }
 
 
@@ -137,5 +137,5 @@ resource "azurerm_network_security_rule" "From_Tier2_To_Tier3_Inbound" {
   destination_address_prefix  = "*"
   resource_group_name         = "${var.resource_group_name}"
   network_security_group_name = "${lower("nsg-${var.environment}-${var.nsg_name[2]}")}"
-  depends_on                  = ["azurerm_network_security_group.networksg"]
+  depends_on                  = [azurerm_network_security_group.networksg]
 }

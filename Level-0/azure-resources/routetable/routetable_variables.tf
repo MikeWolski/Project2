@@ -12,7 +12,7 @@ variable "subnet_count" {
 
 # Variable declaration for the route table name to be created
 variable "rt_name" {
-  type = "list" 
+  type = list(string) 
 }
 
 
@@ -29,7 +29,7 @@ variable "region" {
 
 # Variable declaration for Tags to be added
 variable "tagvalue" {
-    type = "map"
+    type = map(string)
 }
 
 

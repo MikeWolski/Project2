@@ -1,12 +1,12 @@
 #Varible Declaration for subnet Id
 variable "subnet_id" {
-  type ="list"
+  type =list(string)
 }
 
 
 #Varible Declaration for NSG Id 
 variable "nsg_id" {
-  type ="list"
+  type =list(string)
 }
 
 

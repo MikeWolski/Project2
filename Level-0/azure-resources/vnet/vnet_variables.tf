@@ -13,19 +13,19 @@ variable "vnet_enable" {
 
 # Variable Declaration for Virtual Network Name
 variable "vnet_name" {
-   type = "list"
+   type = list(string)
 }
 
 # Variable Declaration for Virtual Network Address
 variable "vnet_address" {
-    type = "list"
+    type = list(string)
 }
 
 
 
 # Variable Declaration for Tag Value
 variable "tagvalue" {
-  type = "map"
+  type = map(string)
 }
 
 # Variable Declaration for Environment
