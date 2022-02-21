@@ -10,7 +10,7 @@ module "Resources" {
     nsg_enable                               = 1
     rt_enable                                = 1
     vnet_peering_enable                      = 1
-
+#this is a change
     # Parameter Definition for the Azure Network Foundation components
     resource_group_name                      = "${var.resource_group_name}"
     region                                   = "${var.region}"
