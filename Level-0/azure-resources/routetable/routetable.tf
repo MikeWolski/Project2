@@ -9,7 +9,6 @@ resource "azurerm_route_table" "routetable" {
   tags                          = "${var.tagvalue}"
 }
 
-
 # Source code for the Route creation for the Route table
 resource "azurerm_route" "route" {
   count                         = "${var.rt_enable  == 1 ? var.subnet_count : 0}"
