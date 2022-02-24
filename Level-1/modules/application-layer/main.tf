@@ -37,8 +37,8 @@ module "virtual_machine" {
   region                                  = "${var.region}"
   vm_enable                               = "${var.vm_enable}"  
   vm_name                                 = "${var.vm_name}"
-  nic_id                                  = ["${module.network_interface.nic}"]
-  #nic_id                                  = "${module.network_interface.nic}"
+  #nic_id                                  = ["${module.network_interface.nic}"]
+  nic_id                                  = "${module.network_interface.nic}"
   vm_size                                 = "${var.vm_size}"
   image_publisher                         = "${var.image_publisher}"
   image_offer                             = "${var.image_offer}"

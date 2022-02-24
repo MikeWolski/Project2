@@ -1,12 +1,12 @@
 # Parameter for Creating Azure Resources
-resource_group_name                         = "githubnetworking"
-region                                      = "Southeast Asia"
+resource_group_name                         = "team4-primary"
+region                                      = "eastus"
 
 
 
 # Parameter for Create Virtual network and Subnets
-vnet_name                                   = "cloud-engg-project1"
-subnet_names                                = ["web","app","DB"]
+vnet_name                                   = "team4-primary"
+subnet_names                                = ["web","business","DB"]
 
 # Parameter for Azure Resources Tags
 tagvalue                                    =  {

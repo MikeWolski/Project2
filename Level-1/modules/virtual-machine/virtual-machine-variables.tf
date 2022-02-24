@@ -1,6 +1,6 @@
 # Variable Declaration for NIC ID
 variable "nic_id" {
-  type = "list"
+  type = list(string)
 }
 
 # Variable Declaration for Resource group name
@@ -96,6 +96,6 @@ variable "disable_password_authentication" {
 
 # Variable Declaration for Tag Value
 variable "tagvalue" {
-  type = "map"
+  type = map(string)
 }
 

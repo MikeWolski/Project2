@@ -2,7 +2,7 @@
 resource "azurerm_virtual_machine" "virtual_machine" {
   count                            = "${var.vm_enable == 1 ? 1 : 0}"
   name                             = "${lower("vm-${var.environment}-${var.vm_name}")}"
-  network_interface_ids            = ["${var.nic_id}"]
+  network_interface_ids            = "${var.nic_id}"
   resource_group_name              = "${var.resource_group_name}"
   location                         = "${var.region}"
   vm_size                          = "${var.vm_size}"

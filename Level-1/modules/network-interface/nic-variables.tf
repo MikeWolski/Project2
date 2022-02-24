@@ -35,7 +35,7 @@ variable "ip_allocation_method" {
 
 # Variable Declaration for Tag Value
 variable "tagvalue" {
-  type = "map"
+  type = map(string)
 }
 
 # Variable Declaration for environment

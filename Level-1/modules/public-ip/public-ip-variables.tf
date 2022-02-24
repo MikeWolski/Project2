@@ -23,7 +23,7 @@ variable "allocation" {
 
 # Variable Declaration for public IP Name
 variable "public_ip_names" {
-  type = "list"
+  type = list(string)
 }
 
 # Variable declaration for ip sku
@@ -33,7 +33,7 @@ variable "sku_type" {
 
 # Variable Declaration for  Variable Declaration for Tag Value
 variable "tagvalue" {
-  type = "map"
+  type = map(string)
 }
 # Variable Declaration for Environment value to be added
 variable "environment" {

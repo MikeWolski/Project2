@@ -21,12 +21,12 @@ variable "vnet_name" {
 
 # Varaible declaration for subnetsnet name
 variable "subnet_names" {
-  type = "list"
+  type = list(string)
 }
 # Variable Declaration for  Tag Value
 variable "tagvalue" {
     description = "The value for the tag"
-    type = "map"
+    type = map(string)
 }
 
 
@@ -64,7 +64,7 @@ variable "private_ip_allocation_method" {
 # Variable declaration for frontend ip name
 
 variable "frontend_ip_name" {
-  type = "list"
+  type = list(string)
   default = []
 }
 
