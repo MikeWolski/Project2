@@ -2,17 +2,17 @@
 environment = "dev"
 
 # Parameter for Creating Azure Resources
-region              = "eastus"
-resource_group_name = "team4-primary"
+region              = "centralus"
+resource_group_name = "team4-secondary"
 # Parameter for Create Virtual network and Subnets
-vnet_name               = ["team4-primary"]
-vnet_address            = ["10.50.0.0/16"]
+vnet_name               = ["team4-secondary"]
+vnet_address            = ["10.60.0.0/16"]
 subnet_names            = ["Web", "Business", "DB"]
 subnet_er               = ["InternetSubnet"]
 subnet_management       = ["management"]
-subnet_er_range         = ["10.50.3.0/24"]
-subnet_management_range = ["10.50.4.0/24"]
-subnet_range            = ["10.50.0.0/24", "10.50.1.0/24", "10.50.2.0/24"]
+subnet_er_range         = ["10.60.3.0/24"]
+subnet_management_range = ["10.60.4.0/24"]
+subnet_range            = ["10.60.0.0/24", "10.60.1.0/24", "10.60.2.0/24"]
 
 # Parameter for Create Network Security Groups
 nsg_names       = ["Web", "Business", "DB"]

@@ -155,15 +155,17 @@ module "projectrt_management" {
     region                                = "${var.region}"
     }
 # Module to Enable VNet Peer
-#module "vnet_peering" {
-# source                                   = "../vnet-peering"
-# vnet_peering_enable                      = "${var.vnet_peering_enable}"
-# resource_group_name                      = "${module.resource_group.resource_group_name}"
-# region                                   = "${var.region}"
-# vnet_id                                  = "${module.projectvnet.vnet_id[1]}"
-# vnet1_id                                 = "${module.projectvnet.vnet_id[0]}"
-# vnet_name                                = ["${var.vnet_name[0]}","${var.vnet_name[1]}"]
-# peer2_resource_group                     = "${module.resource_group.resource_group_name}"
-# allow_virtual_network_access             = "true"
-# environment                              = "${var.environment}"
-# }
+/*
+module "vnet_peering" {
+ source                                   = "../vnet-peering"
+ vnet_peering_enable                      = "${var.vnet_peering_enable}"
+ resource_group_name                      = "${module.resource_group.resource_group_name}"
+ region                                   = "${var.region}"
+ vnet_id                                  = "${module.projectvnet.vnet_id}"
+ vnet1_id                                 = "${module.projectvnet.vnet_id[0]}"
+ vnet_name                                = ["${var.vnet_name[0]}","vnet-dev-team4-primary"]
+ peer2_resource_group                     = "rg-dev-team4-primary"
+ allow_virtual_network_access             = "true"
+ environment                              = "${var.environment}"
+ }
+*/

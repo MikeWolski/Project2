@@ -1,4 +1,4 @@
-
+/*
 
 #Resource Creation for Peer 1 Connection 
 resource "azurerm_virtual_network_peering" "Peer1" {
@@ -29,3 +29,4 @@ resource "azurerm_virtual_network_peering" "Peer2" {
 
 }
 
+*/
