@@ -14,7 +14,7 @@ resource "azurerm_lb" "load_balancer_primary_business" {
     name                 = "PublicIPAddress"
     availability_zone = "No-Zone"
     subnet_id = data.azurerm_subnet.subnet_id_primary_business.id
-    gateway_load_balancer_frontend_ip_configuration_id = 
+    #gateway_load_balancer_frontend_ip_configuration_id = scalesetbus.frontend_ip
 
   }
 }
