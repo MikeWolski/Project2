@@ -29,29 +29,3 @@ module "network_interface" {
   tagvalue                                = "${var.tagvalue}"
 }
 
-
-# Module to create virtual machine
-module "virtual_machine" {
-  source                                  = "../virtual-machine"
-  resource_group_name                     = "${var.resource_group_name}"
-  region                                  = "${var.region}"
-  vm_enable                               = "${var.vm_enable}"  
-  vm_name                                 = "${var.vm_name}"
-  #nic_id                                  = ["${module.network_interface.nic}"]
-  nic_id                                  = "${module.network_interface.nic}"
-  vm_size                                 = "${var.vm_size}"
-  image_publisher                         = "${var.image_publisher}"
-  image_offer                             = "${var.image_offer}"
-  image_version                           = "${var.image_version}"
-  image_sku                               = "${var.image_sku}"
-  vm_os_disk_name                         = "${var.vm_os_disk_name}"
-  os_caching                              = "${var.os_caching}"
-  create_option                           = "${var.create_option}"
-  managed_disk_type                       = "${var.managed_disk_type}"
-  computer_name                           = "${var.computer_name}"
-  admin_username                          = "${var.admin_username}"
-  admin_password                          = "${var.admin_password}"
-  disable_password_authentication         = "${var.disable_password_authentication}"
-  environment                             = "${var.environment}"
-  tagvalue                                = "${var.tagvalue}"
-}
