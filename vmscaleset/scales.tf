@@ -54,7 +54,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "scalesetbus" {
 resource "azurerm_linux_virtual_machine_scale_set" "scalesetbus1" {
   name                = "team4-business-scale-set-secondary"
   resource_group_name = "rg-dev-team4-secondary"
-  location            = "eastus"
+  location            = "centralus"
   sku                 = "Standard_B2s"
   instances           = 3
   admin_username      = "adminuser"
@@ -79,7 +79,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "scalesetbus1" {
     primary = true
 
     ip_configuration {
-      name      = "internal"
+      name      = "internal1"
       primary   = true
       subnet_id = data.azurerm_subnet.subnet_id_secondary.id
     }
