@@ -11,6 +11,19 @@ data "azurerm_subnet" "subnet_id_secondary" {
     virtual_network_name       = "vnet-dev-team4-secondary"
     resource_group_name        = "rg-dev-team4-secondary"
 }
+data "azurerm_lb" "primary-lb" {
+  name                = "primarybusinessloadbalancerteam4"
+  resource_group_name = var.rg
+}
+
+data "azurerm_lb_backend_address_pool" "primary-backend-pool" {
+  name            = "BackEndAddressPool-primary"
+  loadbalancer_id = data.azurerm_lb.primary-lb.id
+}
+
+output "backend_address_pool_id" {
+  value = data.azurerm_lb_backend_address_pool.primary-backend-pool.id
+}
 
 #This is for the primary
 resource "azurerm_linux_virtual_machine_scale_set" "scalesetbus" {
@@ -44,6 +57,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "scalesetbus" {
       name      = "internal"
       primary   = true
       subnet_id = data.azurerm_subnet.subnet_id_primary.id
+      load_balancer_backend_address_pool_ids = [data.azurerm_lb_backend_address_pool.primary-backend-pool.id]
     }
   }
 
@@ -54,7 +68,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "scalesetbus" {
 resource "azurerm_linux_virtual_machine_scale_set" "scalesetbus1" {
   name                = "team4-business-scale-set-secondary"
   resource_group_name = "rg-dev-team4-secondary"
-  location            = "eastus"
+  location            = "centralus"
   sku                 = "Standard_B2s"
   instances           = 3
   admin_username      = "adminuser"
@@ -84,5 +98,4 @@ resource "azurerm_linux_virtual_machine_scale_set" "scalesetbus1" {
       subnet_id = data.azurerm_subnet.subnet_id_secondary.id
     }
   }
-
 }
