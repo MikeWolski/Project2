@@ -1,16 +1,16 @@
 data "azurerm_subnet" "subnet_id_primary_business" {
   name                 = "subnet-dev-business"
   virtual_network_name = "vnet-dev-team4-primary"
-  resource_group_name  = "rg-dev-team4-primary"
+  resource_group_name  = var.rg
 }
 data "azurerm_virtual_network" "vnet-dev-team4-primary" {
   name                = "vnet-dev-team4-primary"
-  resource_group_name = "rg-dev-team4-primary"
+  resource_group_name = var.rg
 }
 
 data "azurerm_virtual_machine_scale_set" "primary_scale_set" {
   name                = "team4-business-scale-set"
-  resource_group_name = "rg-dev-team4-primary"
+  resource_group_name = var.rg
 }
 
 output "vm-scale-set-id" {
