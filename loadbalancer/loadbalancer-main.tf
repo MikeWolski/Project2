@@ -8,25 +8,17 @@ data "azurerm_virtual_network" "vnet-dev-team4-primary" {
   resource_group_name = var.rg
 }
 
-data "azurerm_virtual_machine_scale_set" "primary_scale_set" {
-  name                = "team4-business-scale-set"
-  resource_group_name = var.rg
-}
-
-output "vm-scale-set-id" {
-  value = data.azurerm_virtual_machine_scale_set.primary_scale_set.id
-}
 resource "azurerm_public_ip" "team4-pubIP-loadbalance-primary" {
   name                = "team4-pubIP-loadbalance"
   location            = "eastus"
-  resource_group_name = data.azurerm_subnet.subnet_id_primary_business.resource_group_name
+  resource_group_name = var.rg
   allocation_method   = "Static"
 }
 
 resource "azurerm_lb" "load_balancer_primary_business" {
   name                = "primarybusinessloadbalancerteam4"
   location            = "eastus"
-  resource_group_name = data.azurerm_subnet.subnet_id_primary_business.resource_group_name
+  resource_group_name = var.rg
   sku                 = "Basic"
 
   frontend_ip_configuration {

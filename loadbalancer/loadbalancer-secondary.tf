@@ -1,21 +1,13 @@
 data "azurerm_subnet" "secondary_subnet_business" {
   name                 = "subnet-dev-business"
   virtual_network_name = "vnet-dev-team4-secondary"
-  resource_group_name  = var.rg
+  resource_group_name  = "rg-dev-team4-secondary"
 }
 data "azurerm_virtual_network" "vnet-dev-team4-secondary" {
   name                = "vnet-dev-team4-secondary"
-  resource_group_name = var.rg
+  resource_group_name = "rg-dev-team4-secondary"
 }
 
-data "azurerm_virtual_machine_scale_set" "secondary_scale_set" {
-  name                = "team4-business-scale-set-secondary"
-  resource_group_name = var.rg
-}
-
-output "secondary-vm-scale-set-id" {
-  value = data.azurerm_virtual_machine_scale_set.secondary_scale_set.id
-}
 resource "azurerm_public_ip" "team4-pubIP-loadbalance-secondary" {
   name                = "team4-pubIP-loadbalance"
   location            = var.centralus
