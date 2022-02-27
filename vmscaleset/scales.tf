@@ -110,7 +110,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "scalesetbus1" {
     primary = true
 
     ip_configuration {
-      name      = "internal"
+      name      = "internal1"
       primary   = true
       subnet_id = data.azurerm_subnet.subnet_id_secondary.id
       load_balancer_backend_address_pool_ids = [data.azurerm_lb_backend_address_pool.secondary-backend-pool.id]
