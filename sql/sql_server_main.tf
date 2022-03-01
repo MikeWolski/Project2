@@ -1,6 +1,31 @@
 data "azurerm_resource_group" "rg1" {
   name = var.rg1
 }
+data "azurerm_virtual_network" "vnet-dev-team4-primary" {
+  name                = var.primary_vnet
+  resource_group_name = var.rg1
+}
+data "azurerm_virtual_network" "vnet-dev-team4-secondary" {
+  name                = var.secondary_vnet
+  resource_group_name = var.rg2
+}
+
+#
+resource "azurerm_subnet" "primary-sql-subnet-team4" {
+  name                 = "primary-sql-subnet-team4"
+  resource_group_name  = var.rg1
+  virtual_network_name = var.primary_vnet
+  address_prefixes     = ["10.50.10.0/24"]
+  service_endpoints    = ["Microsoft.Sql"]
+}
+
+resource "azurerm_subnet" "secondary-sql-subnet-team4" {
+  name                 = "secondary-sql-subnet-team4"
+  resource_group_name  = var.rg2
+  virtual_network_name = var.secondary_vnet
+  address_prefixes     = ["10.60.10.0/24"]
+  service_endpoints    = ["Microsoft.Sql"]
+}
 
 resource "azurerm_sql_server" "sql-primary-team4" {
   name                         = "sql-primary-team4"
@@ -40,4 +65,18 @@ resource "azurerm_sql_failover_group" "replication-team4" {
     mode          = "Automatic"
     grace_minutes = 60
   }
+}
+
+resource "azurerm_sql_virtual_network_rule" "sqlvnetrule-primary-team4" {
+  name                = "sql-vnet-rule-primary"
+  resource_group_name = var.rg1
+  server_name         = azurerm_sql_server.sql-primary-team4.name
+  subnet_id           = azurerm_subnet.primary-sql-subnet-team4.id
+}
+
+resource "azurerm_sql_virtual_network_rule" "sqlvnetrule-secondary-team4" {
+  name                = "sql-vnet-rule-secondary"
+  resource_group_name = var.rg2
+  server_name         = azurerm_sql_server.sql-secondary-team4.name
+  subnet_id           = azurerm_subnet.secondary-sql-subnet-team4.id
 }

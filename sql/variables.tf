@@ -13,3 +13,12 @@ variable "centralus" {
 variable "eastus" {
   default = "eastus"
 }
+
+variable "primary_vnet" {
+  default = "vnet-dev-team4-primary"
+}
+
+variable "secondary_vnet" {
+  default = "vnet-dev-team4-secondary"
+}
+
