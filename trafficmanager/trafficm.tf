@@ -50,7 +50,7 @@ resource "azurerm_traffic_manager_endpoint" "appgate1endpoint" {
   name                = "appgate1"
   resource_group_name = azurerm_resource_group.tmrg.name
   profile_name        = azurerm_traffic_manager_profile.tmprofile.name
-  target_resource_id  = data.azurerm_public_ip.appgatepip2.id
+  target_resource_id  = data.azurerm_public_ip.appgatepip.id
   type                = "AzureEndpoints"
   weight              = 100
 }
