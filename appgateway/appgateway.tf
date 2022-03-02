@@ -68,6 +68,7 @@ resource "azurerm_application_gateway" "network" {
     protocol              = "Http"
     request_timeout       = 60
     pick_host_name_from_backend_address = true
+    probe_name            = "backendprobe1"
   }
 
   http_listener {
@@ -150,13 +151,14 @@ resource "azurerm_application_gateway" "network2" {
   }
 
   backend_http_settings {
-    name                  = local.http_setting_name2
-    cookie_based_affinity = "Disabled"
-    path                  = "/path1/"
-    port                  = 80
-    protocol              = "Http"
-    request_timeout       = 60
+    name                                = local.http_setting_name2
+    cookie_based_affinity               = "Disabled"
+    path                                = "/path1/"
+    port                                = 80
+    protocol                            = "Http"
+    request_timeout                     = 60
     pick_host_name_from_backend_address = true
+    probe_name                          = "backendprobe2"
   }
 
   http_listener {
