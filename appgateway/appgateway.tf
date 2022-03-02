@@ -197,6 +197,7 @@ resource "azurerm_application_gateway" "network2" {
   }
 }
 
+/*
 #trafficmanager
 resource "random_id" "server" {
   keepers = {
@@ -253,3 +254,4 @@ resource "azurerm_traffic_manager_endpoint" "appgate2endpoint" {
   type                = "AzureEndpoints"
   weight              = 100
 }
+*/
