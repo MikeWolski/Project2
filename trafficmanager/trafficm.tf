@@ -51,7 +51,7 @@ resource "azurerm_traffic_manager_endpoint" "appgate1endpoint" {
   resource_group_name = azurerm_resource_group.tmrg.name
   profile_name        = azurerm_traffic_manager_profile.tmprofile.name
   target_resource_id  = data.azurerm_application_gateway.network.id
-  type                = "azureEndpoints"
+  type                = "AzureEndpoints"
   weight              = 100
 }
 
@@ -60,6 +60,6 @@ resource "azurerm_traffic_manager_endpoint" "appgate2endpoint" {
   resource_group_name = azurerm_resource_group.tmrg.name
   profile_name        = azurerm_traffic_manager_profile.tmprofile.name
   target_resource_id  = data.azurerm_application_gateway.network2.id
-  type                = "azureEndpoints"
+  type                = "AzureEndpoints"
   weight              = 100
 }
