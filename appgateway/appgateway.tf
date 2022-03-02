@@ -63,7 +63,7 @@ resource "azurerm_application_gateway" "network" {
   backend_http_settings {
     name                  = local.http_setting_name
     cookie_based_affinity = "Disabled"
-    path                  = "/path1/"
+    path                  = "/"
     port                  = 80
     protocol              = "Http"
     request_timeout       = 60
@@ -163,7 +163,7 @@ resource "azurerm_application_gateway" "network2" {
   backend_http_settings {
     name                                = local.http_setting_name2
     cookie_based_affinity               = "Disabled"
-    path                                = "/path1/"
+    path                                = "/"
     port                                = 80
     protocol                            = "Http"
     request_timeout                     = 60
@@ -195,4 +195,61 @@ resource "azurerm_application_gateway" "network2" {
     backend_address_pool_name  = local.backend_address_pool_name2
     backend_http_settings_name = local.http_setting_name2
   }
+}
+
+#trafficmanager
+resource "random_id" "server" {
+  keepers = {
+    azi_id = 1
+  }
+
+  byte_length = 8
+}
+
+resource "azurerm_resource_group" "tmrg" {
+  name     = "rg-dev-team4-trafficmanager"
+  location = "West Europe"
+}
+
+resource "azurerm_traffic_manager_profile" "tmprofile" {
+  name                = random_id.server.hex
+  resource_group_name = azurerm_resource_group.tmrg.name
+
+  traffic_routing_method = "Weighted"
+
+  dns_config {
+    relative_name = random_id.server.hex
+    ttl           = 100
+  }
+
+  monitor_config {
+    protocol                     = "http"
+    port                         = 80
+    path                         = "/"
+    interval_in_seconds          = 30
+    timeout_in_seconds           = 9
+    tolerated_number_of_failures = 3
+  }
+
+  tags = {
+    environment = "Production"
+  }
+}
+
+resource "azurerm_traffic_manager_endpoint" "appgate1endpoint" {
+  name                = "appgate1"
+  resource_group_name = azurerm_resource_group.tmrg.name
+  profile_name        = azurerm_traffic_manager_profile.tmprofile.name
+  target_resource_id  = azurerm_public_ip.appgatepip.id
+  type                = "AzureEndpoints"
+  weight              = 100
+}
+
+resource "azurerm_traffic_manager_endpoint" "appgate2endpoint" {
+  name                = "appgate2"
+  resource_group_name = azurerm_resource_group.tmrg.name
+  profile_name        = azurerm_traffic_manager_profile.tmprofile.name
+  target_resource_id  = azurerm_public_ip.appgatepip2.id
+  type                = "AzureEndpoints"
+  weight              = 100
 }
