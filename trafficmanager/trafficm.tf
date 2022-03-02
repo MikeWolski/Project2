@@ -1,6 +1,6 @@
 data "azurerm_application_gateway" "network" {
   name                = "team4appgateway"
-  resource_group_name = "rg-dev-team4-secondary"
+  resource_group_name = "rg-dev-team4-primary"
 }
 
 data "azurerm_application_gateway" "network2" {

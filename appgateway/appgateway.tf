@@ -71,6 +71,16 @@ resource "azurerm_application_gateway" "network" {
     probe_name            = "backendprobe1"
   }
 
+  probe {
+    name                                      = "backendprobe1"
+    protocol                                  = "Http"
+    interval                                  = 30
+    path                                      = "/"
+    timeout                                   = 30
+    unhealthy_threshold                       = 3
+    pick_host_name_from_backend_http_settings = true
+  }
+
   http_listener {
     name                           = local.listener_name
     frontend_ip_configuration_name = local.frontend_ip_configuration_name
@@ -159,6 +169,16 @@ resource "azurerm_application_gateway" "network2" {
     request_timeout                     = 60
     pick_host_name_from_backend_address = true
     probe_name                          = "backendprobe2"
+  }
+
+  probe {
+    name                                      = "backendprobe2"
+    protocol                                  = "Http"
+    interval                                  = 30
+    path                                      = "/"
+    timeout                                   = 30
+    unhealthy_threshold                       = 3
+    pick_host_name_from_backend_http_settings = true
   }
 
   http_listener {
